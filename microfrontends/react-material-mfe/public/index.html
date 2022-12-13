@@ -45,7 +45,7 @@
         keycloak.onAuthRefreshError = createKcDispatcher({ eventType: 'onAuthRefreshError' });
         keycloak.onAuthLogout = createKcDispatcher({ eventType: 'onAuthLogout' });
         keycloak.onTokenExpired = createKcDispatcher({ eventType: 'onTokenExpired' });
-        
+
         const onInit = createKcDispatcher({ eventType: 'onInit' });
 
         window.entando = {
@@ -77,8 +77,8 @@
       function injectConfigIntoMfe() {
         fetch('%PUBLIC_URL%/mfe-config.json').then(async response => {
           const config = await response.text();
-          const userUiEl = document.querySelector('react-material-mfe');
-          userUiEl.setAttribute('config', config);
+          const rootComponet = document.querySelector('react-material-mfe');
+          rootComponet.setAttribute('config', config);
         })
       }
 
