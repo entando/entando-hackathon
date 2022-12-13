@@ -15,6 +15,7 @@ import createCache from '@emotion/cache';
 */
 
 import App from './App';
+import { KeycloakProvider } from './auth/Keycloak';
 
 class ReactMFE extends HTMLElement {
   #rootID = 'app-element'
@@ -26,8 +27,18 @@ class ReactMFE extends HTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
+  static get observedAttributes() {
+    return ['config'];
+  }
+
   connectedCallback() {
     this.render()
+  }
+
+  attributeChangedCallback(_, oldValue, newValue) {
+    if (newValue !== oldValue) {
+      this.render();
+    }
   }
 
   cleanTree() {
@@ -41,60 +52,66 @@ class ReactMFE extends HTMLElement {
   }
 
   render() {
-    const shadowRootElement = document.createElement('div');
-    const emotionStyleRoot = document.createElement('style');
+    const attrConf = this.getAttribute('config');
+    const config = attrConf && JSON.parse(attrConf);
 
-    shadowRootElement.id = this.#rootID;
+    if (config) {
+      const shadowRootElement = document.createElement('div');
+      const emotionStyleRoot = document.createElement('style');
 
-    this.cleanTree();
+      shadowRootElement.id = this.#rootID;
 
-    /*
-    * id you want to enable css injection uncomment this line
-    * styles.use({ target: this.shadowRoot });
-    */
+      this.cleanTree();
 
-    this.shadowRoot.appendChild(emotionStyleRoot);
+      /*
+      * id you want to enable css injection uncomment this line
+      * styles.use({ target: this.shadowRoot });
+      */
 
-    const cache = createCache({
-      key: 'css',
-      prepend: true,
-      container: emotionStyleRoot,
-    });
+      this.shadowRoot.appendChild(emotionStyleRoot);
 
-    this.#appInstance = ReactDOM.createRoot(shadowRootElement);
+      const cache = createCache({
+        key: 'css',
+        prepend: true,
+        container: emotionStyleRoot,
+      });
 
-    const shadowTheme = createTheme({
-      components: {
-        MuiPopover: {
-          defaultProps: {
-            container: shadowRootElement
-          }
-        },
-        MuiPopper: {
-          defaultProps: {
-            container: shadowRootElement
-          }
-        },
-        MuiModal: {
-          defaultProps: {
-            container: shadowRootElement
+      this.#appInstance = ReactDOM.createRoot(shadowRootElement);
+
+      const shadowTheme = createTheme({
+        components: {
+          MuiPopover: {
+            defaultProps: {
+              container: shadowRootElement
+            }
+          },
+          MuiPopper: {
+            defaultProps: {
+              container: shadowRootElement
+            }
+          },
+          MuiModal: {
+            defaultProps: {
+              container: shadowRootElement
+            }
           }
         }
-      }
-    });
+      });
 
+      this.#appInstance.render(
+        <React.StrictMode>
+          <KeycloakProvider>
+            <CacheProvider value={cache}>
+              <ThemeProvider theme={shadowTheme}>
+                <App config={config} />
+              </ThemeProvider>
+            </CacheProvider>
+          </KeycloakProvider>
+        </React.StrictMode>
+      );
 
-    this.#appInstance.render(
-      <React.StrictMode>
-        <CacheProvider value={cache}>
-          <ThemeProvider theme={shadowTheme}>
-            <App />
-          </ThemeProvider>
-        </CacheProvider>
-      </React.StrictMode>
-    );
-
-    this.shadowRoot.appendChild(shadowRootElement);
+      this.shadowRoot.appendChild(shadowRootElement);
+    }
   }
 }
 

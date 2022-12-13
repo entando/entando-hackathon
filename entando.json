@@ -24,12 +24,19 @@
             "titles": {
                 "en": "react-material-mfe",
                 "it": "react-material-mfe"
-            }
+            },
+            "apiClaims": [
+                {
+                    "name": "intApi",
+                    "type": "internal",
+                    "serviceName": "user-service"
+                }
+            ]
         }
     ],
     "svc": [
-        "keycloak",
-        "mysql"
+        "mysql",
+        "keycloak"
     ],
     "global": {
         "nav": [
