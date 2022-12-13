@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV === 'production') {
-    let publicpath = window.entando?.widgets['react-mfe']?.basePath;
+    let publicpath = window.entando?.widgets['react-material-mfe']?.basePath;
     if (publicpath && publicpath.slice(-1) !== '/') {
         publicpath = `${publicpath}/`;
     }
