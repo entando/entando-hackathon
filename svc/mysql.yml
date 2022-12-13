@@ -1,0 +1,20 @@
+# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+version: '3.7'
+
+services:
+  mysql:
+    image: entando/entando-mysql-rocky:8.0.28
+    restart: always
+    # If you want to relocate the mysql data (volume) to your local directory, uncomment the lines below
+    # volumes:
+    #   - ~/volumes/entando-bundle-cli/entando-codemotion/mysql/:/var/lib/mysql/
+    environment:
+      - MYSQL_ROOT_PASSWORD=entando-codemotion-password
+      - MYSQL_USER=entando-codemotion-user
+      - MYSQL_PASSWORD=entando-codemotion-password
+      - MYSQL_DATABASE=entando-codemotion
+    # If you want to expose these ports outside your dev PC,
+    # remove the "127.0.0.1:" prefix
+    ports:
+      - 127.0.0.1:3306:3306
+    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp

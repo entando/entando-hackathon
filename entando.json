@@ -1,5 +1,18 @@
 {
-    "microservices": [],
+    "microservices": [
+        {
+            "name": "user-service",
+            "stack": "spring-boot",
+            "healthCheckPath": "/health",
+            "commands": {
+                "run": "mvn spring-boot:run"
+            },
+            "roles": [
+                "user-service-role"
+            ],
+            "dbms": "mysql"
+        }
+    ],
     "microfrontends": [
         {
             "name": "react-material-mfe",
@@ -14,7 +27,22 @@
             }
         }
     ],
-    "svc": [],
+    "svc": [
+        "keycloak",
+        "mysql"
+    ],
+    "global": {
+        "nav": [
+            {
+                "label": {
+                    "en": "Entando Developers",
+                    "it": "Entando Developers"
+                },
+                "target": "external",
+                "url": "https://developer.entando.com/"
+            }
+        ]
+    },
     "name": "entando-hackathon",
     "version": "0.0.2",
     "description": "entando-hackathon description",

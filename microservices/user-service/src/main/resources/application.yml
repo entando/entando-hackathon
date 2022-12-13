@@ -1,0 +1,25 @@
+logging:
+  level:
+    ROOT: INFO
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/entando-codemotion?useSSL=false&allowPublicKeyRetrieval=true
+    username: entando-codemotion-user
+    password: entando-codemotion-password
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+  security:
+    oauth2:
+      client:
+        provider:
+          oidc:
+            issuer-uri: http://localhost:9080/auth/realms/entando-dev
+        registration:
+          oidc:
+            client-id: web_app
