@@ -6,18 +6,23 @@ import { BasicModal } from "./components/BasicModal";
 import { Stack } from "@mui/system";
 
 import { useUsers } from "./hooks/useUsers";
+import { Loading } from "./components/Loading";
 
 function App({ config }) {
-  const users = useUsers(config)
+  const { isLoading, users } = useUsers(config);
 
   return (
     <>
       <CssBaseline />
       <Container>
-        <Stack spacing={2}>
-          <BasicTable />
-          <BasicModal />
-        </Stack>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <Stack spacing={2}>
+            <BasicTable users={users} />
+            <BasicModal />
+          </Stack>
+        )}
       </Container>
     </>
   );

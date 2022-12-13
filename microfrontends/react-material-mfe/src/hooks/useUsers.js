@@ -3,6 +3,7 @@ import { useKeycloak } from "../auth/Keycloak";
 import { fetchUsers } from "../api/users";
 
 export function useUsers(config) {
+  const [isLoading, setLoading] = useState(true)
   const [users, setUsers] = useState([]);
   const keycloak = useKeycloak();
 
@@ -13,6 +14,8 @@ export function useUsers(config) {
       } else {
         const request = async () => {
           const users = await fetchUsers(config, keycloak.token);
+          
+          setLoading(false);
           setUsers(users);
         };
 
@@ -21,5 +24,5 @@ export function useUsers(config) {
     }
   }, [keycloak.authenticated, keycloak.token]);
 
-  return users;
+  return { isLoading, users };
 }
