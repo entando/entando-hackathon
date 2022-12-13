@@ -1,0 +1,22 @@
+{
+    "microservices": [],
+    "microfrontends": [
+        {
+            "name": "react-mfe",
+            "customElement": "react-mfe",
+            "stack": "react",
+            "type": "widget",
+            "group": "free",
+            "publicFolder": "public",
+            "titles": {
+                "en": "react-mfe",
+                "it": "react-mfe"
+            }
+        }
+    ],
+    "svc": [],
+    "name": "entando-hackathon",
+    "version": "0.0.1",
+    "description": "entando-hackathon description",
+    "type": "bundle"
+}
