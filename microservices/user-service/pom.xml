@@ -15,6 +15,7 @@
 	<description>User Service</description>
 	<properties>
 		<java.version>11</java.version>
+		<javafaker.version>1.0.2</javafaker.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -49,6 +50,17 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>${javafaker.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 

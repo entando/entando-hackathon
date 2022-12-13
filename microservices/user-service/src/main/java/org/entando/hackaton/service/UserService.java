@@ -1,8 +1,8 @@
-package org.entando.codemotion.service;
+package org.entando.hackaton.service;
 
 import java.util.List;
-import org.entando.codemotion.entity.User;
-import org.entando.codemotion.repository.UserRepository;
+import org.entando.hackaton.entity.User;
+import org.entando.hackaton.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

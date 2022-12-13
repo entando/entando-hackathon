@@ -5,9 +5,9 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/entando-codemotion?useSSL=false&allowPublicKeyRetrieval=true
-    username: entando-codemotion-user
-    password: entando-codemotion-password
+    url: jdbc:mysql://localhost:3306/entando-hackaton?useSSL=false&allowPublicKeyRetrieval=true
+    username: entando-hackaton-user
+    password: entando-hackaton-password
   jpa:
     hibernate:
       ddl-auto: update

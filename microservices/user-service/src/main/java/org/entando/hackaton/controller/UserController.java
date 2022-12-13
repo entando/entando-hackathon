@@ -1,10 +1,10 @@
-package org.entando.codemotion.controller;
+package org.entando.hackaton.controller;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import org.entando.codemotion.entity.User;
-import org.entando.codemotion.service.UserService;
+import org.entando.hackaton.entity.User;
+import org.entando.hackaton.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;

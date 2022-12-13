@@ -1,4 +1,4 @@
-package org.entando.codemotion.security;
+package org.entando.hackaton.security;
 
 import java.util.Collection;
 import java.util.Collections;
