@@ -10,7 +10,7 @@ import {
 import createCache from '@emotion/cache';
 
  /*
-* id you want to enable css injection uncomment this line
+* if you want to enable css injection uncomment this line
 * import styles from './index.css';
 */
 
@@ -64,7 +64,7 @@ class ReactMFE extends HTMLElement {
       this.cleanTree();
 
       /*
-      * id you want to enable css injection uncomment this line
+      * if you want to enable css injection uncomment this line
       * styles.use({ target: this.shadowRoot });
       */
 
